@@ -308,8 +308,8 @@ BinarySearchTree<Key, Value>::iterator::operator->() const
 * as 'rhs'
 */
 template<class Key, class Value>
-bool BinarySearchTree<Key, Value>::iterator::operator==(
-    const BinarySearchTree<Key, Value>::iterator& rhs) const
+bool BinarySearchTree<Key, Value>::iterator::operator==
+(const BinarySearchTree<Key, Value>::iterator& rhs) const
 {
     // TODO
     return (current_ == rhs.current_);
@@ -638,10 +638,8 @@ void BinarySearchTree<Key, Value>::remove(const Key& key)
     
 }
 
-
-
 template<class Key, class Value>
-Node<Key, Value>*
+Node<Key, Value>* 
 BinarySearchTree<Key, Value>::predecessor(Node<Key, Value>* current)
 {
     // TODO
@@ -713,6 +711,7 @@ void BinarySearchTree<Key, Value>::clear()
     while (root_ != nullptr)
     {
         // reset all key values
+        // pop everything out basically because root is updates
         remove(root_->getKey());
     }
 }
@@ -796,7 +795,7 @@ bool BinarySearchTree<Key, Value>::isBalancedHelper(Node<Key, Value> *curr) cons
 
     int leftH = getHeight(curr->getLeft());
     int rightH = getHeight(curr->getRight());
-    int balanceFactor = rightH - leftH;
+    int balanceFactor = rightH - leftH; // left - right
 
     if (abs(balanceFactor) <= 1 && isBalancedHelper(curr->getLeft()) && isBalancedHelper(curr->getRight()))
     {
