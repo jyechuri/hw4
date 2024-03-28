@@ -257,6 +257,7 @@ void AVLTree<Key, Value>::insert(const std::pair<const Key, Value> &new_item)
     if (internalFind(new_item.first) != nullptr)
     {
         internalFind(new_item.first)->setValue(new_item.second);
+        delete insertNode;
         return;
     }
 
@@ -299,7 +300,7 @@ void AVLTree<Key, Value>::insert(const std::pair<const Key, Value> &new_item)
         }
     }
 
-    // CHECK IN SMALL LEVEL -- CURRNODE and INSERT NODE accounted for only
+        // CHECK IN SMALL LEVEL -- CURRNODE and INSERT NODE accounted for only
     // within the requirement of -1 or 1 and add element on either side then new balance = 0
     // only inserting to curr left or right side
     if (currNode->getBalance() == 1 || currNode->getBalance() == -1)
